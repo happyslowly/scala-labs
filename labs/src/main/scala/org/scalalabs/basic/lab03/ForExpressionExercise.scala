@@ -45,7 +45,16 @@ object ForExpressionExercise01 {
    * @return largest palindrome.
    */
   def largestPalindromWithForExpression(amountOfDigits: Int): Int = {
-    error("Fix me")
+    val (fromNumber, toNumber) = getFromAndTo(amountOfDigits)
+    var max = 0
+    for {
+      i <- fromNumber to toNumber
+      j <- fromNumber to toNumber
+    } {
+      val n = i * j
+      if (n.toString == n.toString.reverse && n > max) max = n
+    }
+    max
   }
 
   /**
@@ -57,6 +66,11 @@ object ForExpressionExercise01 {
    * @return largest palindrome.
    */
   def largestPalindromWithHigherOrderFunctions(amountOfDigits: Int): Int = {
-    error("Fix me")
+    val (fromNumber, toNumber) = getFromAndTo(amountOfDigits)
+    val numbers = for {
+      i <- fromNumber to toNumber
+      j <- fromNumber to toNumber
+    } yield i * j
+    numbers.filter(n => n.toString == n.toString.reverse).max
   }
 }
